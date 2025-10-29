@@ -4,6 +4,13 @@ const nextConfig: NextConfig = {
     typescript: {
         ignoreBuildErrors: true,
     },
+    env: {
+        NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
+        CLOUDINARY_URL: process.env.CLOUDINARY_URL,
+        MONGODB_URI: process.env.MONGODB_URI,
+        NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+        NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY
+    },
     cacheComponents: true,
     images: {
         remotePatterns: [
