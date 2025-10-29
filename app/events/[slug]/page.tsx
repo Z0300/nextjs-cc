@@ -1,60 +1,11 @@
-import {notFound} from "next/navigation";
-import Image from "next/image";
-import EventDetailItem from "@/components/EventDetails";
-import BookEvent from "@/components/BookEvent";
-import {getSimilarEventsBySlug} from "@/lib/actions/event.actions";
-import {IEvent} from "@/database";
-import EventCard from "@/components/EventCard";
+import {Suspense} from "react";
+import EventDetails from "@/components/EventDetails";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}) => {
 
-const EventAgenda = ({agendaItems}: { agendaItems: string[]; }) => (
-    <div className="agenda">
-        <h2>Agenda</h2>
-        <ul>
-            {agendaItems.map((agenda) => (
-                <li key={agenda}>{agenda}</li>
-            ))}
-        </ul>
-    </div>
-)
-
-const EventTags = ({tags}: { tags: string[]; }) => (
-    <div className="flex flex-row gap-1.5 flex-wrap">
-
-        {tags.map((tag) => (
-            <div className="pill" key={tag}>{tag}</div>
-        ))}
-
-    </div>
-)
-
-const EventDetailsPage = async ({params}: { params: Promise<{ slug: string }> }) => {
-    const {slug} = await params;
-    const request = await fetch(`${BASE_URL}/api/events/${slug}`);
-    const {
-        data: {
-            description,
-            image,
-            overview,
-            date,
-            time,
-            location,
-            mode,
-            agenda,
-            audience,
-            organizer,
-            tags
-        }
-    } = await request.json();
-
-    if (!description) return notFound();
-
-    const bookings = 10;
-
-    const similarEvents: IEvent[] = await getSimilarEventsBySlug(slug);
 
     return (
+<<<<<<< Updated upstream
         <section id="event">
             <div className="header">
                 <h1>Event Description</h1>
@@ -111,6 +62,13 @@ const EventDetailsPage = async ({params}: { params: Promise<{ slug: string }> })
                 </div>
             </div>
         </section>
+=======
+        <main>
+            <Suspense fallback={<div>Loading...</div>}>
+                <EventDetails params={params} />
+            </Suspense>
+        </main>
+>>>>>>> Stashed changes
     )
 }
 export default EventDetailsPage

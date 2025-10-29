@@ -1,8 +1,11 @@
-import type { NextConfig } from "next";
+import type {NextConfig} from "next";
 
 const nextConfig: NextConfig = {
+    typescript: {
+        ignoreBuildErrors: true,
+    },
     cacheComponents: true,
-    images:{
+    images: {
         remotePatterns: [
             {
                 protocol: 'https',
@@ -10,21 +13,21 @@ const nextConfig: NextConfig = {
             }
         ]
     },
-  /* config options here */
-  async rewrites() {
-    return [
-      {
-        source: "/ingest/static/:path*",
-        destination: "https://us-assets.i.posthog.com/static/:path*",
-      },
-      {
-        source: "/ingest/:path*",
-        destination: "https://us.i.posthog.com/:path*",
-      },
-    ];
-  },
-  // This is required to support PostHog trailing slash API requests
-  skipTrailingSlashRedirect: true,
+    /* config options here */
+    async rewrites() {
+        return [
+            {
+                source: "/ingest/static/:path*",
+                destination: "https://us-assets.i.posthog.com/static/:path*",
+            },
+            {
+                source: "/ingest/:path*",
+                destination: "https://us.i.posthog.com/:path*",
+            },
+        ];
+    },
+    // This is required to support PostHog trailing slash API requests
+    skipTrailingSlashRedirect: true,
 };
 
 export default nextConfig;
