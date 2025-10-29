@@ -5,12 +5,6 @@ import {IEvent} from "@/database";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-console.log("BASE_URL:", process.env.NEXT_PUBLIC_BASE_URL);
-console.log(
-    "BASE_URL length:",
-    process.env.NEXT_PUBLIC_BASE_URL ? process.env.NEXT_PUBLIC_BASE_URL.length : 0
-);
-
 const Page = async () => {
     'use cache';
     cacheLife('hours');
